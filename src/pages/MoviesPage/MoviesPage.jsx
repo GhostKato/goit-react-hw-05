@@ -10,7 +10,7 @@ const MoviesPage = () => {
   const [searchData, setSearchData] = useState([]);  
   const [query, setQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
-  const fetchQuery = searchParams.get('query') ?? query;
+  const fetchQuery = searchParams.get('query') ?? query;  
 
     useEffect(() => {
       const getSearchData = async () => {

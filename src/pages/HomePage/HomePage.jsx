@@ -35,9 +35,13 @@ const HomePage = () => {
         <div className={`${s.container} container`}>
             <h2 className={s.title}>Popular movies of the day</h2>
             <MovieList data={filmsData} />
-            <div>
-                <button onClick={handlePrevPage} disabled={page === 1}>Prev</button>
-                <button onClick={handleNextPage}>Next</button>
+            <div className={s.btnCont}>
+                {page > 1 && (
+                    <button className={s.button} onClick={handlePrevPage}>
+                        Prev
+                    </button>
+                )}
+                <button className={s.button} onClick={handleNextPage}>Next</button>
             </div>
         </div>
     );

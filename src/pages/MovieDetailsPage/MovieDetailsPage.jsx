@@ -1,11 +1,19 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { getDetalsMovie } from '../../services/fetchTmbd';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
+import s from './MovieDetailsPage.module.css'
+import clsx from 'clsx';
+
+const buildLinkClass = ({ isActive }) => {
+  return clsx(s.link, isActive && s.active);
+};
 
 const MovieDetailsPage = () => {
     
     const params = useParams();
     const [detalsData, setDetalsData] = useState(null);
+    const location = useLocation();
+    const goBackRef = useRef(location?.state || '/movies');
 
     useEffect(() => {
         const getDetals = async () => {
@@ -22,24 +30,37 @@ const MovieDetailsPage = () => {
     }, []);
 
     return (
-        <div>
-            <h3>Film Details</h3>
-            {detalsData && (
-                <div>
-                    <h2>{detalsData.title}</h2>
-                    <p>{detalsData.release_date}</p>
-                    <img src={`https://image.tmdb.org/t/p/w500/${detalsData.backdrop_path}`} alt="Movie Poster" />
-                    <h4>Overview</h4>
-                    <p>{detalsData.overview}</p>
-                    <h4>Genres</h4>
-                     {detalsData.genres.map(genre => (
-                         <p key={genre.id}>{genre.name}</p>  
-                     ))}
-                    <div>
-                        <NavLink to='cast'>Cast</NavLink>
-                        <NavLink to='reviews'>Reviews</NavLink>
+        <div className={s.section}>         
+                {detalsData && (
+                <div className={`${s.container} container`}>
+                    <Link className={s.link} to={goBackRef.current}>Go back</Link>                   
+                       
+                            <h2 className={s.title}>{detalsData.title}</h2>
+                        <p className={s.pText}>{detalsData.release_date}</p>
+                         <div className={s.content}>
+                       <div className={s.img}>
+                            <img src={`https://image.tmdb.org/t/p/w500/${detalsData.backdrop_path}`} alt="Movie Poster" />
+                       </div>
+                        <div className={s.textContent}>
+                           <div className={s.overviewContainer}>
+                                <h4 className={s.titleText}>Overview</h4>
+                                <p className={s.pText}>{detalsData.overview}</p>
+                           </div>
+                            <div className={s.genresContainer}>
+                                <h4 className={s.titleText}>Genres</h4>
+                                 {detalsData.genres.map(genre => (
+                                     <p className={s.pText} key={genre.id}>{genre.name}</p>  
+                                 ))}
+                            </div >
+                        </div>
                     </div>
-                    <Outlet/>
+                    <div className={s.linklBtn}> 
+                        <NavLink className={buildLinkClass} to='cast'>Cast</NavLink>
+                        <NavLink className={buildLinkClass} to='reviews'>Reviews</NavLink>                        
+                    </div>
+                    {/* <Suspense fallback={<h2>Loading</h2>}>  */}
+                    <Outlet />
+                    {/* </Suspense> */}
                 </div>
             )}
         </div>

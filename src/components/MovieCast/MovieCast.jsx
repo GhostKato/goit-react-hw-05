@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getCastMovie } from '../../services/fetchTmbd';
 import { useParams } from 'react-router-dom';
+import s from './MovieCast.module.css';
 
 const MovieCast = () => {
 
@@ -22,13 +23,12 @@ const MovieCast = () => {
    }, []);
   
   return (
-    <div>
-      <h4>MovieCast</h4>
-      <ul>
+    <div className={s.container}>      
+      <ul className={s.list}>
         {castData.map(cast => (
-          <li key={cast.id}>
+          <li className={s.item} key={cast.id}>
             <img src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`} alt="Movie Poster" />
-            <h3>{cast.original_name}</h3>
+            <h3 className={s.title}>{cast.original_name}</h3>
           </li>
         ))}
       </ul>

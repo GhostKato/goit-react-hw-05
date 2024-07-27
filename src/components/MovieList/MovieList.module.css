@@ -20,13 +20,6 @@
   text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.textCont {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
-}
-
 img {
   object-fit: contain;
 }

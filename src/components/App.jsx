@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-
+import { lazy, Suspense } from "react";
 
 import { MdNoFood } from "react-icons/md";
 import Navigation from "./Navigation/Navigation";
@@ -9,11 +9,18 @@ import MoviesPage from "../pages/MoviesPage/MoviesPage";
 import MovieCast from "./MovieCast/MovieCast";
 import MovieReviews from "./MovieReviews/MovieReviews";
 
+// const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
+// const MoviesPage = lazy(() => import("../pages/MoviesPage/MoviesPage"));
+// const MovieDetailsPage = lazy(() => import("./MovieCast/MovieCast"));
+// const MovieCast = lazy(() => import("../pages/MovieDetailsPage/MovieDetailsPage"));
+// const MovieReviews = lazy(() => import("./MovieReviews/MovieReviews"));
+
 function App() {  
 
   return (
     <>      
       <Navigation />
+      {/* <Suspense fallback={<h2>Loading</h2>}> */}
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/movies' element={<MoviesPage />} />
@@ -24,7 +31,8 @@ function App() {
           </Route>       
         
         <Route path='*' element={<MdNoFood />} />
-      </Routes>
+        </Routes>
+        {/* </Suspense> */}
     </>
   );
 }
