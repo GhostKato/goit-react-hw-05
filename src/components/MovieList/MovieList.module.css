@@ -1,0 +1,27 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.item {
+  background-color: #1e2023;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+  color: #14c57c;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.textCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}

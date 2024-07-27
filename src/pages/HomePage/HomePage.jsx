@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getTrendingMovie } from '../../services/fetchTmbd';
 import MovieList from '../../components/MovieList/MovieList';
+import s from './HomePage.module.css'
 
 const HomePage = () => {
     const [filmsData, setFilmsData] = useState([]);
@@ -31,8 +32,8 @@ const HomePage = () => {
     };
 
     return (
-        <div>
-            <h3>Home</h3>
+        <div className={`${s.container} container`}>
+            <h2 className={s.title}>Popular movies of the day</h2>
             <MovieList data={filmsData} />
             <div>
                 <button onClick={handlePrevPage} disabled={page === 1}>Prev</button>

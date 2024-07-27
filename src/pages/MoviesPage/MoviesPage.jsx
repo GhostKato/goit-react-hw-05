@@ -2,6 +2,7 @@ import MovieList from "../../components/MovieList/MovieList"
 import { useEffect, useState } from 'react';
 import { getSearchMovie } from '../../services/fetchTmbd';
 import SearchBar from "../../components/SearchBar/SearchBar";
+import s from './MoviesPage.module.css'
 
 const MoviesPage = () => {
 
@@ -29,7 +30,7 @@ setQuery(newQuery)
   }
 
   return (
-    <div>
+    <div className={`${s.container} container`}>      
       <SearchBar handleChangeQuery={handleChangeQuery} query={query} />
       <MovieList data={searchData} />      
     </div>

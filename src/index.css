@@ -2,6 +2,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  background-color: #2a2d32;
 
   color-scheme: light dark;
   font-synthesis: none;
@@ -15,51 +16,6 @@
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
-}
-
-.section {
-  padding-top: 60px;
-}
-
-/* Mobile */
-
-@media screen and (min-width: 375px) {
-  .container {
-    width: 375px;
-  }
-}
-
-/* Tablet */
-
-@media screen and (min-width: 768px) {
-  .container {
-    width: 768px;
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-
-  .section {
-    padding-top: 80px;
-  }
-}
-
-/* Desktop */
-
-@media screen and (min-width: 1280px) {
-  .container {
-    width: 1280px;
-    padding-left: 65px;
-    padding-right: 65px;
-  }
-
-  .section {
-    padding-top: 100px;
-  }
-}
-
-body {
-  font-family: sans-serif;
-  line-height: 1.5;
 }
 
 /* Reset styles */
