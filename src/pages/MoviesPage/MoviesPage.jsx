@@ -3,17 +3,20 @@ import { useEffect, useState } from 'react';
 import { getSearchMovie } from '../../services/fetchTmbd';
 import SearchBar from "../../components/SearchBar/SearchBar";
 import s from './MoviesPage.module.css'
+import { useSearchParams } from "react-router-dom";
 
 const MoviesPage = () => {
 
   const [searchData, setSearchData] = useState([]);  
-  const [query, setQuery] = useState(''); 
+  const [query, setQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const fetchQuery = searchParams.get('query') ?? query;
 
     useEffect(() => {
       const getSearchData = async () => {
           
             try {
-                const data  = await getSearchMovie(query);
+                const data  = await getSearchMovie(fetchQuery);
                 setSearchData(data.results);
               console.log(data.results)
               
@@ -26,7 +29,12 @@ const MoviesPage = () => {
     }, [query]);
   
   const handleChangeQuery = newQuery => {
-setQuery(newQuery)
+    setQuery(newQuery);
+    if (!newQuery) {
+      return setSearchParams({});
+    }
+    searchParams.set("query", newQuery);
+    setSearchParams(searchParams);
   }
 
   return (
