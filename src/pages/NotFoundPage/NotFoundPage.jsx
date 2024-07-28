@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom"
-import HomePage from "../HomePage/HomePage"
 import { useEffect } from "react";
 import  s from './NotFoundPage.module.css';
 
