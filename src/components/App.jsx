@@ -4,16 +4,10 @@ import { lazy, Suspense } from "react";
 import { MdNoFood } from "react-icons/md";
 import Navigation from "./Navigation/Navigation";
 
-// import HomePage from "../pages/HomePage/HomePage";
-// import MovieDetailsPage from "../pages/MovieDetailsPage/MovieDetailsPage";
-// import MoviesPage from "../pages/MoviesPage/MoviesPage";
-// import MovieCast from "./MovieCast/MovieCast";
-// import MovieReviews from "./MovieReviews/MovieReviews";
-
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const MoviesPage = lazy(() => import("../pages/MoviesPage/MoviesPage"));
-const MovieDetailsPage = lazy(() => import("./MovieCast/MovieCast"));
-const MovieCast = lazy(() => import("../pages/MovieDetailsPage/MovieDetailsPage"));
+const MovieDetailsPage = lazy(() => import("../pages/MovieDetailsPage/MovieDetailsPage"));
+const MovieCast = lazy(() => import("./MovieCast/MovieCast"));
 const MovieReviews = lazy(() => import("./MovieReviews/MovieReviews"));
 
 function App() {  
