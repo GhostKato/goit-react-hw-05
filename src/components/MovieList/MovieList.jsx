@@ -11,7 +11,7 @@ const MovieList = ({ data = [] }) => {
       {data.map(movie => (
       
           <li className = { s.item } key = { movie.id } >
-      <Link className={s.link} to={movie.id.toString()} state={location}>
+      <Link className={s.link} to={`/movies/${movie.id.toString()}`} state={location}>
             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="Movie Poster"
              onError={(e) => {             
               e.target.closest('li').style.display = 'none';
@@ -21,7 +21,7 @@ const MovieList = ({ data = [] }) => {
           </li>
          
         ))}
-      </ul>
+    </ul>    
     
   )
 }
