@@ -58,9 +58,9 @@ const MovieDetailsPage = () => {
                         <NavLink className={buildLinkClass} to='cast'>Cast</NavLink>
                         <NavLink className={buildLinkClass} to='reviews'>Reviews</NavLink>                        
                     </div>
-                    {/* <Suspense fallback={<h2>Loading</h2>}>  */}
+                    <Suspense fallback={<h2>Loading</h2>}> 
                     <Outlet />
-                    {/* </Suspense> */}
+                    </Suspense>
                 </div>
             )}
         </div>
