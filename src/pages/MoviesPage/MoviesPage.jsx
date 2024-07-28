@@ -4,6 +4,7 @@ import { getSearchMovie } from '../../services/fetchTmbd';
 import SearchBar from "../../components/SearchBar/SearchBar";
 import s from './MoviesPage.module.css'
 import { useSearchParams } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
 
 const MoviesPage = () => {
 
@@ -21,7 +22,7 @@ const MoviesPage = () => {
               console.log(data.results)
               
             } catch (error) {
-                console.log(error);
+                toast.error('Request failed. Try again.');
             }
         };
 
@@ -38,7 +39,8 @@ const MoviesPage = () => {
   }
 
   return (
-    <div className={`${s.container} container`}>      
+    <div className={`${s.container} container`}>
+      <Toaster position='top-right' /> 
       <SearchBar handleChangeQuery={handleChangeQuery} query={query} />
       <MovieList data={searchData} />      
     </div>

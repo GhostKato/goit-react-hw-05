@@ -3,6 +3,8 @@ import { getDetalsMovie } from '../../services/fetchTmbd';
 import { Link, NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
 import s from './MovieDetailsPage.module.css'
 import clsx from 'clsx';
+import Loading from '../../components/Loading/Loading';
+import toast, { Toaster } from 'react-hot-toast';
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(s.link, isActive && s.active);
@@ -22,7 +24,7 @@ const MovieDetailsPage = () => {
                 setDetalsData(data);
                 console.log(data);
             } catch (error) {
-                console.log(error);
+                toast.error('Request failed. Try again.');
             }
         };
 
@@ -30,7 +32,8 @@ const MovieDetailsPage = () => {
     }, []);
 
     return (
-        <div className={s.section}>         
+        <div className={s.section}>
+            <Toaster position='top-right' /> 
                 {detalsData && (
                 <div className={`${s.container} container`}>
                     <Link className={s.link} to={goBackRef.current}>Go back</Link>                   
@@ -58,7 +61,7 @@ const MovieDetailsPage = () => {
                         <NavLink className={buildLinkClass} to='cast'>Cast</NavLink>
                         <NavLink className={buildLinkClass} to='reviews'>Reviews</NavLink>                        
                     </div>
-                    <Suspense fallback={<h2>Loading</h2>}> 
+                    <Suspense fallback={<Loading/>}> 
                     <Outlet />
                     </Suspense>
                 </div>

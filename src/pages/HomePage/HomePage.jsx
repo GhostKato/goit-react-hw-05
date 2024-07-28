@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getTrendingMovie } from '../../services/fetchTmbd';
 import MovieList from '../../components/MovieList/MovieList';
 import s from './HomePage.module.css'
+import toast, { Toaster } from 'react-hot-toast';
 
 const HomePage = () => {
     const [filmsData, setFilmsData] = useState([]);
@@ -14,7 +15,7 @@ const HomePage = () => {
               setFilmsData(data.results);
               console.log(data.results);
             } catch (error) {
-                console.log(error);
+                toast.error('Request failed. Try again.');
             }
         };
 
@@ -33,6 +34,7 @@ const HomePage = () => {
 
     return (
         <div className={`${s.container} container`}>
+             <Toaster position='top-right' /> 
             <h2 className={s.title}>Popular movies of the day</h2>
             <MovieList data={filmsData} />
             <div className={s.btnCont}>

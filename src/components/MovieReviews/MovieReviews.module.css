@@ -1,0 +1,27 @@
+.container {
+  margin-top: 20px;
+}
+
+.list {
+  padding: 20px;
+  border-top: 2px solid red;
+  border-bottom: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  color: #14c57c;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.content {
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.p {
+  text-align: center;
+  color: red;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
