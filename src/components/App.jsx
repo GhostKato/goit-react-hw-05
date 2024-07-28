@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 
 import { MdNoFood } from "react-icons/md";
 import Navigation from "./Navigation/Navigation";
+
 import HomePage from "../pages/HomePage/HomePage";
 import MovieDetailsPage from "../pages/MovieDetailsPage/MovieDetailsPage";
 import MoviesPage from "../pages/MoviesPage/MoviesPage";
@@ -24,7 +25,12 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/movies' element={<MoviesPage />} />
-        <Route path='/:movieId' element={<MovieDetailsPage />}/>
+
+         <Route path='/:movieId' element={<MovieDetailsPage />}>
+          <Route path='cast' element={ <MovieCast/>} />
+           <Route path='reviews' element={ <MovieReviews/>} />
+          </Route> 
+
         <Route path='/movies/:movieId' element={<MovieDetailsPage />}>
           <Route path='cast' element={ <MovieCast/>} />
            <Route path='reviews' element={ <MovieReviews/>} />

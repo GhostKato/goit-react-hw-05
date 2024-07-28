@@ -5,15 +5,21 @@ const MovieList = ({ data = [] }) => {
   
   const location = useLocation();
 
-  return (         
+  return (
 
-      <ul className={s.list}>
-        {data.map(movie => (
-          <li className={s.item} key={movie.id}>
-            <Link className={s.link} to={movie.id.toString()} state={location}>
-              <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="Movie Poster" />              
-            </Link>
+    <ul className={s.list}>
+      {data.map(movie => (
+      
+          <li className = { s.item } key = { movie.id } >
+      <Link className={s.link} to={movie.id.toString()} state={location}>
+            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="Movie Poster"
+             onError={(e) => {             
+              e.target.closest('li').style.display = 'none';
+            }}
+/>
+      </Link>
           </li>
+         
         ))}
       </ul>
     

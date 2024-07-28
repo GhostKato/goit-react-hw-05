@@ -27,7 +27,11 @@ const MovieCast = () => {
       <ul className={s.list}>
         {castData.map(cast => (
           <li className={s.item} key={cast.id}>
-            <img src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`} alt="Movie Poster" />
+            <img src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`} alt="Movie Poster"
+             onError={(e) => {             
+              e.target.closest('li').style.display = 'none';
+            }}
+            />
             <h3 className={s.title}>{cast.original_name}</h3>
           </li>
         ))}
