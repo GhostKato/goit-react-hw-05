@@ -7,21 +7,21 @@ const NotFoundPage = () => {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
+  useEffect(() => {
     
-  //     const id = setTimeout(() => {
-  //      navigate('/');
-  //     }, 5000);
-  //     return () => {
-  //       clearTimeout(id);
-  //     };
+      const id = setTimeout(() => {
+       navigate('/');
+      }, 2000);
+      return () => {
+        clearTimeout(id);
+      };
     
-  // }, []);
+  }, []);
 
   return (
     <div className={s.container}>
       <h2 className={s.title}>Not Found Page</h2>
-      <Link className={s.link} to='/'><HomePage/>Back home</Link>
+      <Link className={s.link} to='/'>Back home</Link>
     </div>
   )
 }

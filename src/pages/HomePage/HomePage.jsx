@@ -7,6 +7,7 @@ import toast, { Toaster } from 'react-hot-toast';
 const HomePage = () => {
     const [filmsData, setFilmsData] = useState([]);
     const [page, setPage] = useState(1);
+     const [showButton, setShowButton] = useState(false);
 
     useEffect(() => {
         const getFilms = async () => {
@@ -32,6 +33,17 @@ const HomePage = () => {
         setPage(prev => prev + 1);
     };
 
+     useEffect(() => {
+    
+      const id = setTimeout(() => {
+        setShowButton(true);
+      }, 1000);
+      return () => {
+        clearTimeout(id);
+      };
+    
+  }, []);
+
     return (
         <div className={`${s.container} container`}>
              <Toaster position='top-right' /> 
@@ -43,7 +55,7 @@ const HomePage = () => {
                         Prev
                     </button>
                 )}
-                <button className={s.button} onClick={handleNextPage}>Next</button>
+                {showButton && <button className={s.button} onClick={handleNextPage}>Next</button>}
             </div>
         </div>
     );
