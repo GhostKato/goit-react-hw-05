@@ -21,7 +21,7 @@ const MovieCast = () => {
         };
 
         getCastData();
-   }, []);
+   }, [params.movieId]);
   
   return (
     <div className={s.container}> 

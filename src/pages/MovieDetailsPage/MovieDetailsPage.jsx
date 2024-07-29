@@ -29,7 +29,7 @@ const MovieDetailsPage = () => {
         };
 
         getDetals();
-    }, []);
+    }, [params.movieId]);
 
     return (
         <div className={s.section}>

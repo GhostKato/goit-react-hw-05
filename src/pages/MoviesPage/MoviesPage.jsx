@@ -1,50 +1,52 @@
-import MovieList from "../../components/MovieList/MovieList"
+import MovieList from "../../components/MovieList/MovieList";
 import { useEffect, useState } from 'react';
 import { getSearchMovie } from '../../services/fetchTmbd';
 import SearchBar from "../../components/SearchBar/SearchBar";
-import s from './MoviesPage.module.css'
+import s from './MoviesPage.module.css';
 import { useSearchParams } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
 
 const MoviesPage = () => {
-
-  const [searchData, setSearchData] = useState([]);  
+  const [searchData, setSearchData] = useState([]);
   const [query, setQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
-  const fetchQuery = searchParams.get('query') ?? query;  
 
-    useEffect(() => {
-      const getSearchData = async () => {
-          
-            try {
-                const data  = await getSearchMovie(fetchQuery);
-                setSearchData(data.results);
-              console.log(data.results)
-              
-            } catch (error) {
-                toast.error('Request failed. Try again.');
-            }
-        };
+  useEffect(() => {
+    const queryParam = searchParams.get('query') || '';
 
-        getSearchData();
-    }, [query]);
-  
-  const handleChangeQuery = newQuery => {
-    setQuery(newQuery);
-    if (!newQuery) {
-      return setSearchParams({});
+    if (queryParam) {
+      setQuery(queryParam);
     }
-    searchParams.set("query", newQuery);
-    setSearchParams(searchParams);
-  }
+  }, [searchParams]);
+
+  
+  useEffect(() => {
+    if (!query) return;
+
+    const getSearchData = async () => {
+      try {
+        const data = await getSearchMovie(query);
+        setSearchData(data.results);
+      } catch (error) {
+        toast.error('Request failed. Try again.');
+      }
+    };
+
+    getSearchData();
+  }, [query]);
+
+  
+  const handleSubmit = (newQuery) => {    
+    setSearchParams(newQuery ? { query: newQuery } : {});
+  };
 
   return (
     <div className={`${s.container} container`}>
       <Toaster position='top-right' /> 
-      <SearchBar handleChangeQuery={handleChangeQuery} query={query} />
-      <MovieList data={searchData} />      
+      <SearchBar setQuery={handleSubmit} />
+      <MovieList data={searchData} />
     </div>
-  )
-}
+  );
+};
 
-export default MoviesPage
+export default MoviesPage;
